@@ -33,15 +33,16 @@ def is_very_long(password):
 
 def on_change_password(edit, new_edit_text):
     score = 0
-    password_verification = [has_digit, is_very_long, has_letters, has_upper_letters, has_lower_letters, has_symbols,
-                             doesnt_consist_of_symbols]
-    for checking_password in password_verification:
+
+    for checking_password in PASSWORD_VERIFICATION:
         if checking_password(new_edit_text):
             score += 2
     fill.set_text('Рейтинг пароля: %s' % score)
 
 
 if __name__ == "__main__":
+    PASSWORD_VERIFICATION = [has_digit, is_very_long, has_letters, has_upper_letters, has_lower_letters, has_symbols,
+                             doesnt_consist_of_symbols]
     text = urwid.Edit(u'Введите пароль: ', mask='*')
     fill = urwid.Text('')
     menu = urwid.Pile([text, fill])
